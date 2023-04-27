@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
               title: '',
               initialRoute: '',
               onReady: () async {},
-              //getPages: ThemeAppPages.routes,
+              getPages: ThemeAppPages.routes,
               debugShowCheckedModeBanner: false,
               defaultTransition: Transition.cupertino,
               theme: ThemeData(

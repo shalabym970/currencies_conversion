@@ -1,0 +1,19 @@
+{
+  "login_with": " Login with ",
+  "home": "Home",
+  "logout": "Logout",
+  "welcome": "Welcome ",
+  "notifications": "Notifications",
+  "new": "New",
+  "details": "Details",
+  "search": "Search...",
+  "all": "All",
+  "lang": "AR",
+  "more": "More",
+  "privacy_policy": "Privacy Policy",
+  "help_support": "Help & Support",
+  "change_lang": "Change Language",
+  "delete_account": "Delete Account",
+  "something_went_wrong": "Something went wrong",
+  "empty_list": "There is no data to display"
+}
