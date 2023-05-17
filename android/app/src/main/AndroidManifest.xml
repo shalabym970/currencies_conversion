@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.getx_mvc_templet">
+    package="com.currenciesconversion">
    <application
-        android:label="getx_mvc_templet"
+        android:label="Currencies Conversion"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
