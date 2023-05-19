@@ -1,7 +1,7 @@
+import 'package:currency_converter/app/modules/home/widgets/rates_list/rates_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:getx_mvc_templet/app/modules/home/widgets/rates_list/rates_item.dart';
 
 import '../../../../../common/color_manager.dart';
 import '../../../../../common/strings.dart';
@@ -32,8 +32,8 @@ class RatesList extends GetView<HomeController> {
             itemCount: controller.rates.length,
             physics: const AlwaysScrollableScrollPhysics(),
             itemBuilder: ((_, index) {
-              List<Rate> rates = [controller.rates.elementAt(index),controller.rates.elementAt(index+1)];
-              return RateItem(rates: rates);
+              List<Rate> rate = controller.rates.elementAt(index);
+              return RateItem(rates: rate);
             }),
           );
         }

@@ -1,4 +1,4 @@
-import 'package:getx_mvc_templet/common/widgets/future_dialogs.dart';
+import 'package:currency_converter/common/widgets/future_dialogs.dart';
 
 class Constants{
   static const String basicUrl =

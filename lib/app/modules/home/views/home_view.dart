@@ -63,6 +63,8 @@ class HomeView extends GetView<HomeController> {
                           value: controller.baseCurrency.value,
                           onChanged: (currency) {
                             controller.baseCurrency.value = currency!;
+                            controller.getCurrenciesConversion();
+
                           },
                           items: controller.currencies
                               .map<DropdownMenuItem<Currency>>((currency) {
@@ -80,6 +82,8 @@ class HomeView extends GetView<HomeController> {
                           value: controller.targetCurrency.value,
                           onChanged: (currency) {
                             controller.targetCurrency.value = currency!;
+                            controller.getCurrenciesConversion();
+
                           },
                           items: controller.currencies
                               .map<DropdownMenuItem<Currency>>((value) {
@@ -115,6 +119,8 @@ class HomeView extends GetView<HomeController> {
                             );
                             if (selectedDate != null) {
                               controller.startDate.value = selectedDate;
+                              controller.getCurrenciesConversion();
+
                             }
                           },
                         ),
@@ -131,6 +137,8 @@ class HomeView extends GetView<HomeController> {
                               );
                               if (selectedDate != null) {
                                 controller.endDate.value = selectedDate;
+                                controller.getCurrenciesConversion();
+
                               }
                             }),
                       ],
@@ -138,17 +146,16 @@ class HomeView extends GetView<HomeController> {
                     SizedBox(height: 10.h),
                     CustomButton(
                       text: Strings.convertNow,
-                      onPressed: () async{
-    var connectivityResult =
-    await (Connectivity().checkConnectivity());
-    if (connectivityResult ==
-    ConnectivityResult.mobile ||
-    connectivityResult == ConnectivityResult.wifi) {
-                        controller.getCurrenciesConversion();
-    } else {
-      await Constants.futureDialogs
-          .noInternetConnectionDialog();
-    }
+                      onPressed: () async {
+                        var connectivityResult =
+                            await (Connectivity().checkConnectivity());
+                        if (connectivityResult == ConnectivityResult.mobile ||
+                            connectivityResult == ConnectivityResult.wifi) {
+                          controller.getCurrenciesConversion();
+                        } else {
+                          await Constants.futureDialogs
+                              .noInternetConnectionDialog();
+                        }
                       },
                     ),
                     const Expanded(

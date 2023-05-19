@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:getx_mvc_templet/common/color_manager.dart';
+
+import '../color_manager.dart';
 
 class Ui {
   static GetSnackBar successSnackBar(

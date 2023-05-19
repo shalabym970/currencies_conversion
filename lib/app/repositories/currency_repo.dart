@@ -1,6 +1,7 @@
-import 'package:getx_mvc_templet/app/models/currency.dart';
-import 'package:getx_mvc_templet/app/providers/api_provider.dart';
+
+import '../models/currency.dart';
 import '../models/rate.dart';
+import '../providers/api_provider.dart';
 
 class CurrencyRepo {
   final apiProvider = APIProvider();

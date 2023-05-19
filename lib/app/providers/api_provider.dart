@@ -26,6 +26,7 @@ class APIProvider {
 
   Future<List<Rate>> getCurrenciesConversion({required String startDate, required String endDate,
       required List<String> symbols}) async {
+
     String url = '${Constants.basicUrl}timeseries';
     String symbolsStr = symbols.join(',');
     String apiUrl = '$url?start_date=$startDate&end_date=$endDate&symbols=$symbolsStr';
@@ -38,7 +39,8 @@ class APIProvider {
 
       List<Rate> ratesList = [];
       exchangeRateResponse.rates?.forEach((date, currencies) {
-        currencies.forEach((currencyCode, exchangeRate) {
+
+       currencies.forEach((currencyCode, exchangeRate) {
           Rate rate = Rate(
             currencyCode: currencyCode,
             exchangeRate: exchangeRate.toDouble(),

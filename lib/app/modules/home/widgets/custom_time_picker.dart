@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:getx_mvc_templet/common/color_manager.dart';
+
+import '../../../../common/color_manager.dart';
 
 class CustomTimePicker extends StatelessWidget {
   const CustomTimePicker({Key? key, required this.onTap, required this.textDate})

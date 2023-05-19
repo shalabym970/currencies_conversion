@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:getx_mvc_templet/common/color_manager.dart';
 import 'package:intl/intl.dart' as intl;
+import '../../../../../common/color_manager.dart';
 import '../../../../models/rate.dart';
 
 class RateItem extends StatelessWidget {
