@@ -1,5 +1,5 @@
 name: currency_converter
-description: A new Flutter project.
+description: Application to convert between currencies depending on the date.
 
 version: 1.0.0+1
 
