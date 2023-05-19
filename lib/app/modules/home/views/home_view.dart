@@ -1,8 +1,10 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../common/color_manager.dart';
+import '../../../../common/constants.dart';
 import '../../../../common/images_paths.dart';
 import '../../../../common/strings.dart';
 import '../../../../common/widgets/custom_loading.dart';
@@ -136,8 +138,17 @@ class HomeView extends GetView<HomeController> {
                     SizedBox(height: 10.h),
                     CustomButton(
                       text: Strings.convertNow,
-                      onPressed: () {
+                      onPressed: () async{
+    var connectivityResult =
+    await (Connectivity().checkConnectivity());
+    if (connectivityResult ==
+    ConnectivityResult.mobile ||
+    connectivityResult == ConnectivityResult.wifi) {
                         controller.getCurrenciesConversion();
+    } else {
+      await Constants.futureDialogs
+          .noInternetConnectionDialog();
+    }
                       },
                     ),
                     const Expanded(

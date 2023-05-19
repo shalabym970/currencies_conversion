@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:getx_mvc_templet/common/color_manager.dart';
 
 class Ui {
   static GetSnackBar successSnackBar(
@@ -31,15 +32,15 @@ class Ui {
     return GetSnackBar(
       titleText: Text(title.tr,
           style: Get.textTheme.titleLarge
-              ?.merge(TextStyle(color: Get.theme.primaryColor))),
+              ?.merge(TextStyle(color: ColorManager.white))),
       messageText: Text(message!,
           style: Get.textTheme.bodySmall
-              ?.merge(TextStyle(color: Get.theme.primaryColor))),
+              ?.merge(TextStyle(color: ColorManager.white))),
       snackPosition: SnackPosition.BOTTOM,
       margin: EdgeInsets.all(30.h),
       backgroundColor: Colors.redAccent,
       icon: Icon(Icons.remove_circle_outline,
-          size: 32.sp, color: Get.theme.primaryColor),
+          size: 32.sp, color: ColorManager.white),
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       borderRadius: 8.h,
       duration: const Duration(seconds: 3),

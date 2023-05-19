@@ -7,5 +7,7 @@ class Strings {
   static const String from = 'From';
   static const String convertNow = 'Convert Now';
   static const String nothingData = "Tap Convert to get Data";
+  static const String notConnectedWithInternet =
+      "you are not connected to the internet";
 
 }

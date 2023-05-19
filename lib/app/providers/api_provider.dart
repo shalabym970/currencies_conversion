@@ -41,7 +41,7 @@ class APIProvider {
         currencies.forEach((currencyCode, exchangeRate) {
           Rate rate = Rate(
             currencyCode: currencyCode,
-            exchangeRate: exchangeRate,
+            exchangeRate: exchangeRate.toDouble(),
             date: DateTime.parse(date),
           );
           ratesList.add(rate);

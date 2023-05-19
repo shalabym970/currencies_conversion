@@ -37,8 +37,9 @@ class HomeController extends GetxController {
     try {
       loadingRates.value = true;
       List<String> symbols = [
-        baseCurrency.value.code!.toString(),
-        targetCurrency.value.code!.toString()
+       
+        targetCurrency.value.code!.toString(),
+        baseCurrency.value.code!.toString()
       ];
       rates.assignAll(await currencyRepo.getCurrenciesConversion(
           startDate: startDate.value.toString(),

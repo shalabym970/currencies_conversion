@@ -7,6 +7,7 @@ import '../../../../../common/color_manager.dart';
 import '../../../../../common/strings.dart';
 import '../../../../../common/widgets/custom_loading.dart';
 import '../../../../../common/widgets/nothing_data.dart';
+import '../../../../models/rate.dart';
 import '../../controllers/Home_controller.dart';
 
 class RatesList extends GetView<HomeController> {
@@ -25,14 +26,14 @@ class RatesList extends GetView<HomeController> {
           );
         } else {
           return ListView.builder(
-            padding: EdgeInsets.only(bottom: 10.h, top: 10.h),
+            padding: EdgeInsets.only(bottom: 5.h, top: 5.h),
             primary: false,
             shrinkWrap: true,
             itemCount: controller.rates.length,
             physics: const AlwaysScrollableScrollPhysics(),
             itemBuilder: ((_, index) {
-              var rate = controller.rates.elementAt(index);
-              return RateItem(rate: rate);
+              List<Rate> rates = [controller.rates.elementAt(index),controller.rates.elementAt(index+1)];
+              return RateItem(rates: rates);
             }),
           );
         }
