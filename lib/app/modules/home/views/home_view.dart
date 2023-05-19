@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../common/color_manager.dart';
+import '../../../../common/images_paths.dart';
 import '../../../../common/strings.dart';
+import '../../../../common/widgets/custom_loading.dart';
+import '../../../../common/widgets/custom_text.dart';
 import '../../../models/currency.dart';
 import '../controllers/Home_controller.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/custom_drop_down.dart';
+import '../widgets/custom_time_picker.dart';
+import '../widgets/rates_list/rates_list.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -12,139 +20,90 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE3F2FD),
+      backgroundColor: ColorManager.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        backgroundColor: ColorManager.main,
+        foregroundColor: ColorManager.black,
         elevation: 0.0,
-        title: const Text(
-          Strings.currencyConvert,
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
+        title: Center(
+          child: Text(
+            Strings.currencyConvert,
+            style: TextStyle(
+              color: ColorManager.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),
       body: SafeArea(
           child: Obx(
         () => controller.loading.isTrue
-            ? CircularProgressIndicator()
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 20.h),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20.w),
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset: const Offset(0, 3),
-                        ),
-                      ],
+            ? const CustomLoading()
+            : Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 10.h),
+                    Image.asset(
+                      ImagesPaths.logo,
+                      height: 120.h,
+                      width: 150.w,
                     ),
-                    child: Row(
+                    SizedBox(height: 10.h),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          'Convert',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                        SizedBox(width: 10),
-                        DropdownButton<CurrencyRate>(
-                          value: controller.targetCurrency,
-                          onChanged: (value) {
-                            controller.targetCurrency = value!;
-
-                            controller.getCurrencies();
+                        const CustomText(text: Strings.convert),
+                        CustomDropDown(
+                          value: controller.baseCurrency.value,
+                          onChanged: (currency) {
+                            controller.baseCurrency.value = currency!;
                           },
                           items: controller.currencies
-                              .map<DropdownMenuItem<CurrencyRate>>((value) {
-                            return DropdownMenuItem<CurrencyRate>(
-                              value: value,
-                              child: Text(
-                                value.code,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            );
+                              .map<DropdownMenuItem<Currency>>((currency) {
+                            return DropdownMenuItem<Currency>(
+                                value: currency,
+                                child: CustomText(
+                                  text: currency.code.toString(),
+                                  color: ColorManager.black,
+                                  size: 22.sp,
+                                ));
                           }).toList(),
                         ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'to',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        DropdownButton<CurrencyRate>(
-                          value: controller.targetCurrency,
-                          onChanged: (value) {
-                            controller.targetCurrency = value!;
-
-                            controller.getCurrencies();
+                        const CustomText(text: Strings.to),
+                        CustomDropDown(
+                          value: controller.targetCurrency.value,
+                          onChanged: (currency) {
+                            controller.targetCurrency.value = currency!;
                           },
                           items: controller.currencies
-                              .map<DropdownMenuItem<CurrencyRate>>((value) {
-                            return DropdownMenuItem<CurrencyRate>(
-                              value: value,
-                              child: Text(
-                                value.code,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            );
+                              .map<DropdownMenuItem<Currency>>((value) {
+                            return DropdownMenuItem<Currency>(
+                                value: value,
+                                child: CustomText(
+                                  text: value.code.toString(),
+                                  color: ColorManager.black,
+                                  size: 22.sp,
+                                ));
                           }).toList(),
                         ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'currency',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
+                        const CustomText(
+                          text: Strings.currency,
+                        )
                       ],
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset: const Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    SizedBox(height: 30.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        GestureDetector(
+                        const CustomText(text: Strings.from),
+                        CustomTimePicker(
+                          textDate:
+                              controller.startDate.toString().substring(0, 10),
                           onTap: () async {
                             final selectedDate = await showDatePicker(
                               context: context,
@@ -154,117 +113,38 @@ class HomeView extends GetView<HomeController> {
                             );
                             if (selectedDate != null) {
                               controller.startDate.value = selectedDate;
-
-                              controller.getCurrencies();
                             }
                           },
-                          child: Row(
-                            children: [
-                              Icon(Icons.calendar_today),
-                              SizedBox(width: 10),
-                              Text(
-                                controller.startDate
-                                    .toString()
-                                    .substring(0, 10),
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
                         ),
-                        GestureDetector(
-                          onTap: () async {
-                            final selectedDate = await showDatePicker(
-                              context: context,
-                              initialDate: controller.endDate.value,
-                              firstDate: DateTime(2000),
-                              lastDate: DateTime.now(),
-                            );
-                            if (selectedDate != null) {
-                              controller.endDate.value = selectedDate;
-
-                              controller.getCurrencies();
-                            }
-                          },
-                          child: Row(
-                            children: [
-                              const Icon(Icons.calendar_today),
-                              const SizedBox(width: 10),
-                              Text(
+                        const CustomText(text: Strings.to),
+                        CustomTimePicker(
+                            textDate:
                                 controller.endDate.toString().substring(0, 10),
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                            onTap: () async {
+                              final selectedDate = await showDatePicker(
+                                context: context,
+                                initialDate: controller.endDate.value,
+                                firstDate: DateTime(2000),
+                                lastDate: DateTime.now(),
+                              );
+                              if (selectedDate != null) {
+                                controller.endDate.value = selectedDate;
+                              }
+                            }),
                       ],
                     ),
-                  ),
-                  SizedBox(height: 20.h),
-                  Expanded(
-                      child: controller.loading.value
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : Container()
-                      // : ListView.builder(
-                      //     itemCount: controller.data.length,
-                      //     itemBuilder: (context, index) {
-                      //       final date = controller.data[index].key;
-                      //       final rate = controller
-                      //           .data[index].value[controller.targetCurrency];
-                      //       final maxRate =
-                      //           rate != null ? rate['max'] as double : 0.0;
-                      //       return Container(
-                      //         margin: const EdgeInsets.symmetric(
-                      //             vertical: 10, horizontal: 20),
-                      //         padding: const EdgeInsets.symmetric(
-                      //             vertical: 10, horizontal: 20),
-                      //         decoration: BoxDecoration(
-                      //           color: Colors.white,
-                      //           borderRadius: BorderRadius.circular(20),
-                      //           boxShadow: [
-                      //             BoxShadow(
-                      //               color: Colors.grey.withOpacity(0.5),
-                      //               spreadRadius: 1,
-                      //               blurRadius: 5,
-                      //               offset: const Offset(0, 3),
-                      //             ),
-                      //           ],
-                      //         ),
-                      //         child: Row(
-                      //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //           children: [
-                      //             Text(
-                      //               date,
-                      //               style: const TextStyle(
-                      //                 fontSize: 18,
-                      //                 fontWeight: FontWeight.bold,
-                      //                 color: Colors.black,
-                      //               ),
-                      //             ),
-                      //             Text(
-                      //               maxRate.toStringAsFixed(2),
-                      //               style: const TextStyle(
-                      //                 fontSize: 18,
-                      //                 fontWeight: FontWeight.bold,
-                      //                 color: Colors.black,
-                      //               ),
-                      //             ),
-                      //           ],
-                      //         ),
-                      //       );
-                      //     },
-                      //   ),
-                      ),
-                ],
+                    SizedBox(height: 10.h),
+                    CustomButton(
+                      text: Strings.convertNow,
+                      onPressed: () {
+                        controller.getCurrenciesConversion();
+                      },
+                    ),
+                    const Expanded(
+                      child: RatesList(),
+                    ),
+                  ],
+                ),
               ),
       )),
     );

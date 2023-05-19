@@ -1,9 +1,6 @@
 name: getx_mvc_templet
 description: A new Flutter project.
 
-
-
-
 version: 1.0.0+1
 
 environment:
@@ -18,10 +15,7 @@ dependencies:
   package_info_plus: ^3.0.2
   url_launcher: ^6.1.7
   shimmer: ^2.0.0
-  flutter_local_notifications: ^12.0.4
-  firebase_messaging: ^14.0.3
   flutter_screenutil: ^5.5.3+2
-  shared_preferences: ^2.0.15
   connectivity: ^3.0.6
   intl: ^0.17.0
   get: ^4.6.5
@@ -32,25 +26,24 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
 
 
 # flutter_native_splash-development.yaml
 flutter_native_splash:
-  color: "#ffffff"
-  image: assets/images/logo.png
+  color: "#020447"
+  image: assets/images/currency_converter.png
   android: true
   ios: true
 
-flutter_icons:
-  image_path: "assets/images/logo.png"
+flutter_launcher_icons:
+  image_path: "assets/images/currency_converter.png"
   android: true
   ios: true
   remove_alpha_ios: true
-  adaptive_icon_background: "#ffffff"
-  adaptive_icon_foreground: "assets/images/logo.png"
+  adaptive_icon_background: "#020447"
+  adaptive_icon_foreground: "assets/images/currency_converter.png"
 
 
 

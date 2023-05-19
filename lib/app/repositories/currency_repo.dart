@@ -1,24 +1,19 @@
 import 'package:getx_mvc_templet/app/models/currency.dart';
 import 'package:getx_mvc_templet/app/providers/api_provider.dart';
-
-import '../models/currencies_conversion.dart';
+import '../models/rate.dart';
 
 class CurrencyRepo {
   final apiProvider = APIProvider();
 
-  Future<List<CurrencyRate>> getCurrencies() {
+  Future<List<Currency>> getCurrencies() {
     return apiProvider.getCurrencies();
   }
 
-  Future<List<CurrenciesConversion>> getCurrenciesConversion(
-      {required DateTime startDate,
-      required DateTime endDate,
-      required String fromCurrency,
-      required String toCurrency}) async {
+  Future<List<Rate>> getCurrenciesConversion(
+      {required String startDate,
+      required String endDate,
+      required List<String> symbols}) async {
     return apiProvider.getCurrenciesConversion(
-        startDate: startDate,
-        endDate: endDate,
-        fromCurrency: fromCurrency,
-        toCurrency: toCurrency);
+        startDate: startDate, endDate: endDate, symbols: symbols);
   }
 }

@@ -1,23 +1,14 @@
-// To parse this JSON data, do
-//
-//     final currencyRate = currencyRateFromJson(jsonString);
+class Currency {
+  final String? code;
+  final String? description;
 
-class CurrencyRate {
-  String description;
-  String code;
+  Currency({ this.code,  this.description});
 
-  CurrencyRate({
-    required this.description,
-    required this.code,
-  });
-
-  factory CurrencyRate.fromJson(Map<String, dynamic> json) => CurrencyRate(
-        description: json["description"],
-        code: json["code"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "description": description,
-        "code": code,
-      };
+  factory Currency.fromJson(Map<String, dynamic> json) {
+    return Currency(
+      code: json['code'] as String,
+      description: json['description'] as String,
+    );
+  }
 }
+
