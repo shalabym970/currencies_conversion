@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../../../../common/strings.dart';
 import '../../../../common/widgets/ui.dart';
@@ -15,8 +16,15 @@ class HomeController extends GetxController {
   final rates = <List<Rate>>[].obs;
   final loading = false.obs;
   final loadingRates = false.obs;
-
+  var scrollController = ScrollController();
   final currencyRepo = CurrencyRepo();
+
+  @override
+  void onInit() {
+    getCurrencies();
+    super.onInit();
+  }
+
 
   Future getCurrencies() async {
     try {
@@ -57,9 +65,4 @@ class HomeController extends GetxController {
     }
   }
 
-  @override
-  void onInit() {
-    getCurrencies();
-    super.onInit();
-  }
 }

@@ -16,7 +16,7 @@ class CustomDropDown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 5.w),
       child: DropdownButton<Currency>(
           value: value, onChanged: onChanged, items: items),
     );

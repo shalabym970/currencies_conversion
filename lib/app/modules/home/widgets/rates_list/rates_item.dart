@@ -15,10 +15,8 @@ class RateItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: ColorManager.main,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w),
-        child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+      child:Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
             child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,7 +80,7 @@ class RateItem extends StatelessWidget {
                   ),
 
                 ])),
-      ),
+
     );
   }
 }

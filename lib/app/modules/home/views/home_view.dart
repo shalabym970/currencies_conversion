@@ -72,7 +72,7 @@ class HomeView extends GetView<HomeController> {
                                 child: CustomText(
                                   text: currency.code.toString(),
                                   color: ColorManager.black,
-                                  size: 22.sp,
+                                  size: 18.sp,
                                 ));
                           }).toList(),
                         ),
@@ -91,7 +91,7 @@ class HomeView extends GetView<HomeController> {
                                 child: CustomText(
                                   text: value.code.toString(),
                                   color: ColorManager.black,
-                                  size: 22.sp,
+                                  size: 18 .sp,
                                 ));
                           }).toList(),
                         ),

@@ -60,4 +60,4 @@ class APIProvider {
       throw Exception(decodeResponse['message']);
     }
   }
-}
+ }
