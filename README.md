@@ -8,7 +8,7 @@ Input the base currency and target currency for the conversion
 Modern design
 Pagination with 10 records per API call
 
-Screenshots
+# Screenshots
 ![app_screen](https://github.com/shalabym970/currencies_conversion/blob/master/assets/images/app_screen.png)
 
 # Getting Started
