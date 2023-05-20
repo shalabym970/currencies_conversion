@@ -9,7 +9,7 @@ Modern design
 Pagination with 10 records per API call
 
 Screenshots
-![app_screen](https://github.com/shalabym970/currencies_conversion/blob/master/assets/images/app_screen?raw=true)
+![app_screen](https://github.com/shalabym970/currencies_conversion/blob/master/assets/images/app_screen.png)
 
 # Getting Started
 To run the app, you need to have Flutter installed on your machine. You can follow the instructions on the Flutter website to install Flutter.
