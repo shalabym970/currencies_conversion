@@ -1,5 +1,5 @@
 name: currency_converter
-description: Application to convert between currencies depending on the date.
+description: This Flutter app allows users to view currency conversions over time using the Exchange Rates API. The app lets users input the start date and end date for the desired period of time, as well as the base currency and target currency for the conversion.
 
 version: 1.0.0+1
 
