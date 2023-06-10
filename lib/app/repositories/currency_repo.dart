@@ -4,7 +4,9 @@ import '../models/rate.dart';
 import '../providers/api_provider.dart';
 
 class CurrencyRepo {
-  final apiProvider = APIProvider();
+  final APIProvider apiProvider ;
+  CurrencyRepo({required this.apiProvider});
+
 
   Future<List<Currency>> getCurrencies() {
     return apiProvider.getCurrencies();

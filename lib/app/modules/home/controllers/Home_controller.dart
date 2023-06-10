@@ -1,3 +1,4 @@
+import 'package:currency_converter/app/providers/api_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../../../../common/strings.dart';
@@ -17,10 +18,12 @@ class HomeController extends GetxController {
   final loading = false.obs;
   final loadingRates = false.obs;
   var scrollController = ScrollController();
-  final currencyRepo = CurrencyRepo();
+  APIProvider apiProvider = APIProvider();
+  late CurrencyRepo currencyRepo = CurrencyRepo(apiProvider: apiProvider);
 
   @override
   void onInit() {
+    currencyRepo = CurrencyRepo(apiProvider: apiProvider);
     getCurrencies();
     super.onInit();
   }
