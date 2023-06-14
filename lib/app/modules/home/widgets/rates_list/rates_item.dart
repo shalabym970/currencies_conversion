@@ -15,36 +15,39 @@ class RateItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: ColorManager.main,
-      child:Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-            child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "${_rates[0].currencyCode} : ",
-                            style: TextStyle(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w600,
-                                color: ColorManager.white),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          Text(
-                            _rates[0].exchangeRate.toString(),
-                            style: TextStyle(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w500,
-                                color: ColorManager.white),
-                            maxLines: 2,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 10.h,),
+      child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+          child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          "${_rates[0].currencyCode} : ",
+                          style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w600,
+                              color: ColorManager.white),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          _rates[0].exchangeRate.toString(),
+                          style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w500,
+                              color: ColorManager.white),
+                          maxLines: 2,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    if (_rates.length > 1)
                       Row(
                         children: [
                           Text(
@@ -66,21 +69,19 @@ class RateItem extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                  Text(
-                    intl.DateFormat('d MMM y')
-                        .format(_rates[1].date ?? DateTime.now())
-                        .toString(),
-                    style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w500,
-                        color: ColorManager.white),
-                    maxLines: 2,
-                  ),
-
-                ])),
-
+                  ],
+                ),
+                Text(
+                  intl.DateFormat('d MMM y')
+                      .format(_rates[0].date ?? DateTime.now())
+                      .toString(),
+                  style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w500,
+                      color: ColorManager.white),
+                  maxLines: 2,
+                ),
+              ])),
     );
   }
 }

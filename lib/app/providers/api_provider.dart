@@ -9,12 +9,13 @@ import '../models/currency.dart';
 import '../models/rate.dart';
 
 class APIProvider {
+
   Future<List<Currency>> getCurrencies() async {
     String url = '${Constants.basicUrl}symbols?base=USD';
     Get.log('=============== currencies List url :  $url ==========');
     final response = await http.get(Uri.parse(url));
     var decodeResponse =
-        await jsonDecode(response.body)['symbols'] as Map<String, dynamic>;
+    await jsonDecode(response.body)['symbols'] as Map<String, dynamic>;
     Get.log('=============== currencies List :  $decodeResponse==========');
     if (response.statusCode == 200) {
       return decodeResponse.entries
@@ -27,12 +28,12 @@ class APIProvider {
     }
   }
 
-  Future<List<Rate>> getCurrenciesConversion(
-      {required String startDate,
-      required String endDate,
-      required List<String> symbols}) async {
+  Future<List<Rate>> getCurrenciesConversion({required String startDate,
+    required String endDate,
+    required List<String> symbols}) async {
     String url = '${Constants.basicUrl}timeseries';
     String symbolsStr = symbols.join(',');
+
     String apiUrl =
         '$url?start_date=$startDate&end_date=$endDate&symbols=$symbolsStr';
     Get.log('=============== rates url :  $apiUrl ==========');
@@ -40,7 +41,7 @@ class APIProvider {
     Map<String, dynamic> decodeResponse = jsonDecode(response.body);
     if (response.statusCode == 200) {
       ExchangeRateResponse exchangeRateResponse =
-          ExchangeRateResponse.fromJson(decodeResponse);
+      ExchangeRateResponse.fromJson(decodeResponse);
       Get.log('=============== rates List :  $decodeResponse==========');
 
       List<Rate> ratesList = [];
@@ -60,4 +61,4 @@ class APIProvider {
       throw Exception(decodeResponse['message']);
     }
   }
- }
+}

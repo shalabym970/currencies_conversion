@@ -24,16 +24,46 @@ class RatesList extends GetView<HomeController> {
             content: Strings.nothingData,
           );
         } else {
-          return ListView.builder(
-            padding: EdgeInsets.only(bottom: 5.h, top: 5.h),
-            primary: false,
-            shrinkWrap: true,
-            itemCount: controller.rates.length,
-            physics: const AlwaysScrollableScrollPhysics(),
-            itemBuilder: ((_, index) {
-              List<Rate> rate = controller.rates.elementAt(index);
-              return RateItem(rates: rate);
-            }),
+          return Column(
+            children: [
+              Expanded(
+                  child: RefreshIndicator(
+                      onRefresh: controller.refreshRates,
+                      child: ListView.builder(
+                        padding: EdgeInsets.only(bottom: 5.h, top: 5.h),
+                        primary: false,
+                        controller: controller.scrollController,
+                        shrinkWrap: true,
+                        itemCount: controller.rates.length,
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        itemBuilder: ((_, index) {
+                          List<Rate> rate = controller.rates.elementAt(index);
+                          return RateItem(rates: rate);
+                        }),
+                      ))),
+              if (controller.loadingMoreRates.isTrue)
+                Padding(
+                  padding: EdgeInsets.only(bottom: 5.h, top: 5.h),
+                  child: Center(
+                    child: Center(
+                      child:
+                          CircularProgressIndicator(color: ColorManager.main),
+                    ),
+                  ),
+                ),
+              if (controller.hasMore.isFalse)
+                Container(
+                  padding: EdgeInsets.only(bottom: 5.h, top: 5.h),
+                  child: Center(
+                    child: Center(
+                      child: Text(
+                        "You have fetched all of the content",
+                        style: TextStyle(fontSize: 16.sp, color: Colors.black),
+                      ),
+                    ),
+                  ),
+                )
+            ],
           );
         }
       }
