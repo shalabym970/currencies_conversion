@@ -25,6 +25,8 @@ class RatesList extends GetView<HomeController> {
           );
         } else {
           return Column(
+
+
             children: [
               Expanded(
                   child: RefreshIndicator(
@@ -44,6 +46,33 @@ class RatesList extends GetView<HomeController> {
               if (controller.loadingMoreRates.isTrue)
                 Padding(
                   padding: EdgeInsets.only(bottom: 5.h, top: 5.h),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                   child: Center(
                     child: Center(
                       child:
